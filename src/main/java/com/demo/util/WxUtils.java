@@ -6,7 +6,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -26,7 +28,7 @@ public class WxUtils {
      * @return
      * @throws Exception
      */
-    public static Map<String,String> getLoginAcessToken(String  appid, String secret, String code) throws Exception{
+    public static String getLoginAcessToken(String  appid, String secret, String code) throws Exception{
         HttpClient httpclient =  HttpClients.createDefault();
         String smsUrl="https://api.weixin.qq.com/sns/oauth2/access_token?appid="+ appid +"&SECRET="+ secret + "&code=" + code + "&grant_type=authorization_code";
         HttpGet httpGet = new HttpGet(smsUrl);
@@ -39,7 +41,6 @@ public class WxUtils {
         }
 
           System.out.println(strResult);
-        Map resultMap = (Map) JSON.parse(strResult);
-        return resultMap;
+        return strResult;
     }
 }
