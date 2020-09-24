@@ -19,7 +19,6 @@ import java.util.Map;
  * @date 2018/8/6 17:24
  */
 public class WxUtils {
-
     /**
      * 获取Openid
      * @param appid
@@ -30,7 +29,9 @@ public class WxUtils {
      */
     public static String getLoginAcessToken(String  appid, String secret, String code) throws Exception{
         HttpClient httpclient =  HttpClients.createDefault();
-        String smsUrl="https://api.weixin.qq.com/sns/oauth2/access_token?appid="+ appid +"&SECRET="+ secret + "&code=" + code + "&grant_type=authorization_code";
+        //静默授权
+        String smsUrl="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb27d690ac51c11e6&redirect_uri=http%3a%2f%2f94xaqa.natappfree.cc%2f&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
+//        String smsUrl="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri=http%3a%2f%2fc8vhdy.natappfree.cc%2findex.jsp&response_type="+code+"&scope=snsapi_userinfo&state=123#wechat_redirect";
         HttpGet httpGet = new HttpGet(smsUrl);
         String strResult = "";
 

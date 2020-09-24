@@ -22,27 +22,27 @@ import java.util.Map;
  * @Description:
  * @date 2018/8/6 17:19
  */
-@RestController("demo")
+@RestController
 @RequestMapping("/wx")
 public class DemoController {
-    public static final String TOKEN = "okjfdlsf_lsdfjdslkfj_token";
+    public static final String TOKEN = "xiaoyue_login_token";
 
     @PostMapping("/login")
     public String login(String code, String state, HttpServletRequest request) throws Exception {
-        return WxUtils.getLoginAcessToken("wx0b46f27000bd7853", "3036fd691456df2af1248c9763a17e4d", code);
+        return WxUtils.getLoginAcessToken("wxb27d690ac51c11e6", "e1a28143baaa5da6a237aa152f93625e", code);
     }
 
     @PostMapping("/loginOpen")
     public String loginOpen(String code, String state, HttpServletRequest request) throws Exception {
-        return WxUtils.getLoginAcessToken("wx0b46f27000bd7853", "3036fd691456df2af1248c9763a17e4d", code);
+        return WxUtils.getLoginAcessToken("wxb27d690ac51c11e6", "e1a28143baaa5da6a237aa152f93625e", code);
     }
 
     @GetMapping("/get")
     public void get(String signature,String timestamp,String nonce,String echostr, HttpServletResponse response) throws IOException, NoSuchAlgorithmException {
         // 将token、timestamp、nonce三个参数进行字典序排序
-        System.out.println("signature:"+signature);
-        System.out.println("timestamp:"+timestamp);
-        System.out.println("nonce:"+nonce);
+        System.out.println("签名signature:"+signature);
+        System.out.println("生成签名时间戳timestamp:"+timestamp);
+        System.out.println("生成签名随机串nonceStr:"+nonce);
         System.out.println("echostr:"+echostr);
         System.out.println("TOKEN:"+TOKEN);
         String[] params = new String[] { TOKEN, timestamp, nonce };
@@ -57,7 +57,5 @@ public class DemoController {
             response.getWriter().print(echostr);
         }
     }
-
-
 
 }
